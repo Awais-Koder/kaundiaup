@@ -1,0 +1,65 @@
+models:
+  Certificate:
+    name: string
+    relationships:
+      HasMany: Citizen
+  Citizen:
+    certificate_id: foreign
+    name_bn: string
+    mobile: string
+    nid: string
+    birth_id: string
+    passport_no: string
+    birth_date: date
+    father_name_bn: string
+    mother_name_bn: string
+    occupation: string
+    resident: string
+    educational_qualification: string
+    religion: string
+    gender: string
+    marital_status: string
+    husband_name_en: string
+    husband_name_bn: string
+    wife_name_en: string
+    wife_name_bn: string
+    permanent_holding_no: string
+    ward_no: string
+    moholla_id: string
+    permanent_rbs_bn: string
+    permanent_district_id: string
+    permanent_upazila_id: string
+    permanent_postoffice_id: string
+    male: integer
+    female: integer
+    child: integer
+    handicap: integer
+    member_of_earning: integer
+    number_of_dependents_family: integer
+    ssc_job_holder: integer
+    hsc_job_holder: integer
+    land_owner: string
+    income_source: string
+    yearly_income: string
+    nolkup: string
+    expanse_sector: string
+    remittance_senders: integer
+    sanitation: string
+    electronics_instrument: string
+    social_security: string
+    security_program: string
+    multi_building_house: integer
+    ripe_house: integer
+    semi_ripe_house: integer
+    tin_shed_house: integer
+    raw_house: integer
+    probable_rate: integer
+    halson_percentage: float
+    halson_tax: float
+    applying_for : integer
+
+controllers:
+  Citizen:
+    resource: web
+  Certificate:
+    resource: web

@@ -1,0 +1,28 @@
+created:
+    - app/Http/Controllers/CitizenController.php
+    - app/Http/Controllers/CertificateController.php
+    - database/factories/CertificateFactory.php
+    - database/factories/CitizenFactory.php
+    - database/migrations/2025_01_27_042413_create_certificates_table.php
+    - database/migrations/2025_01_27_042414_create_citizens_table.php
+    - app/Models/Certificate.php
+    - app/Models/Citizen.php
+    - tests/Feature/Http/Controllers/CitizenControllerTest.php
+    - tests/Feature/Http/Controllers/CertificateControllerTest.php
+    - app/Http/Requests/CitizenStoreRequest.php
+    - app/Http/Requests/CitizenUpdateRequest.php
+    - app/Http/Requests/CertificateStoreRequest.php
+    - app/Http/Requests/CertificateUpdateRequest.php
+    - resources/views/citizen/index.blade.php
+    - resources/views/citizen/create.blade.php
+    - resources/views/citizen/show.blade.php
+    - resources/views/citizen/edit.blade.php
+    - resources/views/certificate/index.blade.php
+    - resources/views/certificate/create.blade.php
+    - resources/views/certificate/show.blade.php
+    - resources/views/certificate/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    Certificate: { name: string, relationships: { HasMany: Citizen } }
+    Citizen: { certificate_id: foreign, name_bn: string, mobile: string, nid: string, birth_id: string, passport_no: string, birth_date: date, father_name_bn: string, mother_name_bn: string, occupation: string, resident: string, educational_qualification: string, religion: string, gender: string, marital_status: string, husband_name_en: string, husband_name_bn: string, wife_name_en: string, wife_name_bn: string, permanent_holding_no: string, ward_no: string, moholla_id: string, permanent_rbs_bn: string, permanent_district_id: string, permanent_upazila_id: string, permanent_postoffice_id: string, male: integer, female: integer, child: integer, handicap: integer, member_of_earning: integer, number_of_dependents_family: integer, ssc_job_holder: integer, hsc_job_holder: integer, land_owner: string, income_source: string, yearly_income: string, nolkup: string, expanse_sector: string, remittance_senders: integer, sanitation: string, electronics_instrument: string, social_security: string, security_program: string, multi_building_house: integer, ripe_house: integer, semi_ripe_house: integer, tin_shed_house: integer, raw_house: integer, probable_rate: integer, halson_percentage: float, halson_tax: float, applying_for: integer }
