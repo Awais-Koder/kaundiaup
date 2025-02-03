@@ -22,8 +22,8 @@ class CitizenFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'certificate_id' => Certificate::factory(),
-            'certificate_id' => 4,
+            'certificate_id' => Certificate::factory(),
+            // 'certificate_id' => 4,
             'name_bn' => fake()->word(),
             'tracking_number' => fake()->numberBetween(000000 , 999999),
             'image' => 'https://www.kaundiaup.com/img/default/profile.png',
