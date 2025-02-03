@@ -33,9 +33,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Civic Management
-Route::middleware('auth')->prefix('civic-management')->name('civic.')->group(function () {
-    Route::get('/new-applicants', [CivicManagementController::class, 'newApplicants'])->name('new_applicants');
-    Route::get('/certificate-recipients', [CivicManagementController::class, 'certificateRecipients'])->name('certificate_recipients');
+Route::middleware('auth')->controller(CivicManagementController::class)->group(function () {
+    Route::get('/new-applicants/{id}', 'newApplicants')->name('new_applicants');
+    Route::get('/certificate-recipients/{id}', 'certificateRecipients')->name('certificate_recipients');
 });
 
 // Trade License Management
@@ -73,7 +73,8 @@ Route::middleware('auth')->prefix('union-setup')->name('union-setup.')->group(fu
 
 // Certificate
 Route::middleware('auth')->prefix('certificate')->name('certificate.')->group(function () {
-    Route::get('/generate', [CertificateController::class, 'generate'])->name('generate');
+    Route::get('/generate/{id}', [CertificateController::class, 'generate'])->name('generate');
+    Route::post('/generate/{id}', [CertificateController::class, 'storeCertificate'])->name('generate.store');
     Route::get('/generateTrade', [CertificateController::class, 'generateTrade'])->name('generateTrade');
     Route::get('/TradeRenewal', [CertificateController::class, 'TradeRenewal'])->name('TradeRenewal');
     Route::get('/showBn', [CertificateController::class, 'showBn'])->name('showBn');

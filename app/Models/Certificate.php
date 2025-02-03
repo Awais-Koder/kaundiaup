@@ -32,4 +32,8 @@ class Certificate extends Model
     {
         return $this->hasMany(Citizen::class);
     }
+    public function subMenus(): HasMany
+    {
+        return $this->hasMany(CertificateSubMenu::class);
+    }
 }

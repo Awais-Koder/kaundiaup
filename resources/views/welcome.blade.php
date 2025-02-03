@@ -56,7 +56,7 @@
                     <span class="text-sm text-gray-500">Please select.</span>
                 </div>
                 <!-- Name and Mobile -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                         <label for="name_bn" class="block text-sm font-medium text-gray-700">Name (in Bengali) <span
                                 class="text-red-500">*</span></label>
@@ -65,6 +65,15 @@
                             value="{{ old('name_bn') }}">
                         <span class="text-sm text-gray-500">Give the name in Bengali.</span>
                         @error('name_bn')
+                            <span class="text-red-500 block">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                        <input type="file" name="image" id="image" placeholder="Full name"
+                            class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            value="{{ old('image') }}" accept="image/*">
+                        @error('image')
                             <span class="text-red-500 block">{{ $message }}</span>
                         @enderror
                     </div>

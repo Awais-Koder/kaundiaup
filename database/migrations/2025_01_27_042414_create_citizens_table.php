@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('certificate_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->integer('tracking_number')->unique();
             $table->string('name_bn')->nullable();
             $table->string('mobile')->nullable();
+            $table->string('image')->nullable();
             $table->string('nid')->nullable();
             $table->string('birth_id')->nullable();
             $table->string('passport_no')->nullable();

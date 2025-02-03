@@ -22,7 +22,7 @@
 
 
                 <div class="sidenav-menu-heading">Admin</div>
-                <a class="nav-link" href="{{route('dashboard')}}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <div class="nav-link-icon"><i data-feather="filter"></i></div>
                     Dashboard
                 </a>
@@ -30,8 +30,36 @@
 
                 <div class="sidenav-menu-heading">App</div>
 
+                @foreach (App\Services\DefaultService::getCertificates() as $certificate)
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ $certificate->id }}" aria-expanded="false"
+                        aria-controls="collapse{{ $certificate->id }}">
+                        <div class="nav-link-icon"><i data-feather="users"></i></div>
+                        {{ $certificate->name}}
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    @foreach ($certificate->subMenus as $subMenu)
+                        <div class="collapse" id="collapse{{ $certificate->id }}" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav">
+                                <a class="nav-link"
+                                    href="{{ route($subMenu->route, $subMenu->certificate_id) }}">{{ $subMenu->name }}</a>
+                            </nav>
+                        </div>
+                    @endforeach
+                @endforeach
+                {{-- <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseCivicManagement" aria-expanded="false" aria-controls="collapseCivicManagement">
+                    <div class="nav-link-icon"><i data-feather="users"></i></div>
+                    {{ __('menu.civic_management') }}
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseCivicManagement" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('new_applicants' , ) }}">{{ __('menu.new_applicants') }}</a>
+                        <a class="nav-link" href="{{ route('civic.certificate_recipients') }}">{{ __('menu.certificate_recipients') }}</a>
+                    </nav>
+                </div> --}}
                 <!-- Civic Management -->
-                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseCivicManagement" aria-expanded="false" aria-controls="collapseCivicManagement">
+                {{-- <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseCivicManagement" aria-expanded="false" aria-controls="collapseCivicManagement">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                     {{ __('menu.civic_management') }}
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -83,7 +111,7 @@
                         <a class="nav-link" href="{{ route('family.new_applicants') }}">{{ __('menu.new_applicants') }}</a>
                         <a class="nav-link" href="{{ route('family.certificate_recipients') }}">{{ __('menu.certificate_recipients') }}</a>
                     </nav>
-                </div>
+                </div> --}}
 
                 <a class="nav-link" href="{{ route('union-setup.index') }}">
                     <div class="nav-link-icon"><i data-feather="settings"></i></div>

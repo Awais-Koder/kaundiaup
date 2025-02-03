@@ -24,7 +24,13 @@ class CitizenController extends Controller
     {
         return view('citizen.create');
     }
+    public function generateTrackingNumber() {
+        do {
+            $trackingNumber = rand(100000, 999999);
+        } while (Citizen::where('tracking_number', $trackingNumber)->exists());
 
+        return $trackingNumber;
+    }
     public function store(Request $request)
     {
 
@@ -43,11 +49,12 @@ class CitizenController extends Controller
             'probable_rate' => ['required'],
             'halson_percentage' => ['required'],
         ]);
-
-        $citizen = Citizen::create($request->all());
-
-        $request->session()->flash('citizen.id', $citizen->id);
-
+        $data = $request->all();
+        if(!empty($request->image)){
+            $data['image'] = $request->image->store('citizens' , 'public');
+        }
+        $data['tracking_number'] = $this->generateTrackingNumber();
+        Citizen::create($data);
         return redirect()->back();
     }
 

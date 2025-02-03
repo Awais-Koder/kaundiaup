@@ -22,8 +22,11 @@ class CitizenFactory extends Factory
     public function definition(): array
     {
         return [
-            'certificate_id' => Certificate::factory(),
+            // 'certificate_id' => Certificate::factory(),
+            'certificate_id' => 4,
             'name_bn' => fake()->word(),
+            'tracking_number' => fake()->numberBetween(000000 , 999999),
+            'image' => 'https://www.kaundiaup.com/img/default/profile.png',
             'mobile' => fake()->word(),
             'nid' => fake()->word(),
             'birth_id' => fake()->word(),
@@ -74,7 +77,7 @@ class CitizenFactory extends Factory
             'probable_rate' => fake()->numberBetween(-10000, 10000),
             'halson_percentage' => fake()->randomFloat(0, 0, 9999999999.),
             'halson_tax' => fake()->randomFloat(0, 0, 9999999999.),
-            'status' => fake()->randomElement(['new', 'old']),
+            'status' =>'new',
         ];
     }
 }

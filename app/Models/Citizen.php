@@ -17,6 +17,8 @@ class Citizen extends Model
      */
     protected $fillable = [
         'certificate_id',
+        'tracking_number',
+        'image',
         'name_bn',
         'mobile',
         'nid',

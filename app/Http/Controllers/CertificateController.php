@@ -5,62 +5,50 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CertificateStoreRequest;
 use App\Http\Requests\CertificateUpdateRequest;
 use App\Models\Certificate;
+use App\Models\Citizen;
+use App\Models\GeneratedCertificate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CertificateController extends Controller
 {
-    public function index(Request $request)
+    public function generate($id)
     {
-        $certificates = Certificate::all();
-
-        return view('certificate.index', [
-            'certificates' => $certificates,
-        ]);
+        $data = Citizen::findOrFail($id);
+        return view('certificate.generate', compact('data'));
     }
 
-    public function create(Request $request): Response
+    public function storeCertificate(Request $request, $id)
     {
-        return view('certificate.create');
+        $data = Citizen::findOrFail($id);
+        $data->status = 'issued';
+        $data->save();
+        $certificateData = $request->all();
+        $certificateData['citizen_id'] = $id;
+        $certificateData['certificate_id'] = $data->certificate_id;
+        $certificateData['serial_number'] = $this->generateSerialNumber();
+        $certificateData['certificate_number'] = date('Y') . time() . str_pad($data->certificate_id, 3, '0', STR_PAD_LEFT);
+        GeneratedCertificate::create($certificateData);
+        return redirect()->route('certificate_recipients', $data->certificate_id);
     }
 
-    public function store(CertificateStoreRequest $request): Response
+    public function showBn()
     {
-        $certificate = Certificate::create($request->validated());
-
-        $request->session()->flash('certificate.id', $certificate->id);
-
-        return redirect()->route('certificates.index');
+        return view('certificate.showBn');
+    }
+    public function showEn()
+    {
+        return view('certificate.showEn');
     }
 
-    public function show(Request $request, Certificate $certificate): Response
+
+    public function generateSerialNumber()
     {
-        return view('certificate.show', [
-            'certificate' => $certificate,
-        ]);
-    }
+        do {
+            $serialNumber = rand(100000, 999999);
+        } while (GeneratedCertificate::where('serial_number', $serialNumber)->exists());
 
-    public function edit(Request $request, Certificate $certificate): Response
-    {
-        return view('certificate.edit', [
-            'certificate' => $certificate,
-        ]);
-    }
-
-    public function update(CertificateUpdateRequest $request, Certificate $certificate): Response
-    {
-        $certificate->update($request->validated());
-
-        $request->session()->flash('certificate.id', $certificate->id);
-
-        return redirect()->route('certificates.index');
-    }
-
-    public function destroy(Request $request, Certificate $certificate): Response
-    {
-        $certificate->delete();
-
-        return redirect()->route('certificates.index');
+        return $serialNumber;
     }
 }

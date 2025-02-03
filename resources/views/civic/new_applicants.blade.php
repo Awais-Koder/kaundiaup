@@ -17,37 +17,50 @@
         <div class="card mb-4">
             <div class="card-header">{{ __('titles.new_applicants') }}</div>
             <div class="card-body">
-                <table id="datatablesSimple" class="table">
+                <table id="table" class="table">
                     <thead>
-                    <tr>
-                        <th>{{ __('table.no') }}</th>
-                        <th>{{ __('table.photo') }}</th>
-                        <th>{{ __('table.name') }}</th>
-                        <th>{{ __('table.tracking_number') }}</th>
-                        <th>{{ __('table.type_of_service') }}</th>
-                        <th>{{ __('table.mobile') }}</th>
-                        <th>{{ __('table.application_date') }}</th>
-                        <th>{{ __('table.action') }}</th>
-                    </tr>
+                        <tr>
+                            <th>{{ __('table.no') }}</th>
+                            <th>{{ __('table.photo') }}</th>
+                            <th>{{ __('table.name') }}</th>
+                            {{-- <th>{{ __('table.tracking_number') }}</th> --}}
+                            <th>{{ __('table.type_of_service') }}</th>
+                            <th>{{ __('table.mobile') }}</th>
+                            <th>{{ __('table.application_date') }}</th>
+                            <th>{{ __('table.action') }}</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <!-- Example row -->
-                    <tr>
-                        <td>1</td>
-                        <td><img src="https://www.kaundiaup.com//library/profile/1394474149n20241226122258.jpg" alt="{{ __('alt.applicant_photo') }}" class="img-thumbnail" width="50"></td>
-                        <td>John Doe</td>
-                        <td>123456</td>
-                        <td>{{ __('services.service_type') }}</td>
-                        <td>+123456789</td>
-                        <td>2024-01-01</td>
-                        <td>
-                            <a href="{{ route('certificate.generate') }}" class="btn btn-success btn-sm">{{ __('table.generate') }}</a>
-                            <button class="btn btn-danger btn-sm">{{ __('table.delete') }}</button>
-                        </td>
-                    </tr>
+                        <!-- Example row -->
+                        @foreach ($data as $key => $data)
+                            <tr>
+                                <td>{{ $key += 1 }}</td>
+                                <td>
+                                    <img src="{{ $data->image ? Storage::url($data->image) : 'https://www.kaundiaup.com/img/default/profile.png' }}"
+                                        width="50">
+                                </td>
+                                <td>{{ $data->name_bn }}</td>
+                                {{-- <td>123456</td> --}}
+                                <td>{{ App\Services\DefaultService::getCertificateName($data->certificate_id)->certificate_name }}
+                                </td>
+                                <td>{{ $data->mobile }}</td>
+                                <td>{{ $data->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('certificate.generate' , $data->id) }}"
+                                        class="btn btn-success btn-sm">{{ __('table.generate') }}</a>
+                                    <button class="btn btn-danger btn-sm">{{ __('table.delete') }}</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </x-app-layout>
+@push('scripts')
+<script>
+    console.log('yes');
+    let table = new DataTable('#datatablesSimple');
+</script>
+@endpush
