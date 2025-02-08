@@ -60,7 +60,6 @@
 </x-app-layout>
 @push('scripts')
 <script>
-    console.log('yes');
     let table = new DataTable('#datatablesSimple');
 </script>
 @endpush

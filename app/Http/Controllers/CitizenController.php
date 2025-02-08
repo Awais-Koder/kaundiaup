@@ -24,19 +24,21 @@ class CitizenController extends Controller
     {
         return view('citizen.create');
     }
-    public function generateTrackingNumber() {
+    public function generateTrackingNumber()
+    {
         do {
             $trackingNumber = rand(100000, 999999);
         } while (Citizen::where('tracking_number', $trackingNumber)->exists());
-
         return $trackingNumber;
     }
     public function store(Request $request)
     {
-
         $request->validate([
             'certificate_id' => ['required', 'integer', 'exists:certificates,id'],
             'name_bn' => ['required'],
+            'name_en' => ['required'],
+            'father_name_en' => ['required'],
+            'father_name_bn' => ['required'],
             'gender' => ['required'],
             'permanent_holding_no' => ['required'],
             'ward_no' => ['required'],
@@ -50,12 +52,13 @@ class CitizenController extends Controller
             'halson_percentage' => ['required'],
         ]);
         $data = $request->all();
-        if(!empty($request->image)){
-            $data['image'] = $request->image->store('citizens' , 'public');
+        if (!empty($request->image)) {
+            $data['image'] = $request->image->store('citizens', 'public');
         }
         $data['tracking_number'] = $this->generateTrackingNumber();
-        Citizen::create($data);
-        return redirect()->back();
+        $citizen = Citizen::create($data);
+        $encryptedId = base64_encode($citizen->id);
+        return redirect()->route('certificate.view', $encryptedId);
     }
 
     public function show(Request $request, Citizen $citizen)

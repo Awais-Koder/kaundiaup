@@ -45,9 +45,9 @@
                                 <td>{{ $data->mobile }}</td>
                                 <td>{{ $data->created_at->format('Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ route('certificate.showBn') }}" target="_blank"
+                                    <a href="{{ route('certificate.showBn' , $data->id) }}" target="_blank"
                                         class="btn btn-info btn-sm">{{ __('table.bengali') }}</a>
-                                    <a href="{{ route('certificate.showEn') }}" target="_blank"
+                                    <a href="{{ route('certificate.showEn' , $data->id) }}" target="_blank"
                                         class="btn btn-success btn-sm">{{ __('table.english') }}</a>
                                     <button class="btn btn-warning btn-sm">{{ __('table.print') }}</button>
                                 </td>

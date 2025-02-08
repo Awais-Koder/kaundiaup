@@ -37,7 +37,7 @@
         <div id="muri">
             <table border="0px" width="99%" height="60px" cellspacing="0"  cellpadding="0" style="border-collapse:collapse;margin:0px auto;">
                 <tr height="60px">
-                    <td  class="no-print"  style="width:1.5in; text-align:right;"><img src="logo_images/logo.png" height="55px" width="55px"/></td>
+                    <td  class="no-print"  style="width:1.5in; text-align:right;"><img src="" height="55px" width="55px"/></td>
                     <td  class="no-print"  style="text-align:center;height:60px;"><font style="font-size:15px; font-weight:bold; color:blue; width:5.5in;">কাউন্দিয়া ইউনিয়ন পরিষদ</font>  <br />
                         <font style="font-size:9px; font-weight:bold;">
                             সাভার,&nbsp;ঢাকা-১৩৪০ <br />

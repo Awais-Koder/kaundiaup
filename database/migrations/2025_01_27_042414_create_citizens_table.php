@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('certificate_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('tracking_number')->unique();
             $table->string('name_bn')->nullable();
+            $table->string('name_en')->nullable();
             $table->string('mobile')->nullable();
             $table->string('image')->nullable();
             $table->string('nid')->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('passport_no')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('father_name_bn')->nullable();
+            $table->string('father_name_en')->nullable();
             $table->string('mother_name_bn')->nullable();
             $table->string('occupation')->nullable();
             $table->string('resident')->nullable();

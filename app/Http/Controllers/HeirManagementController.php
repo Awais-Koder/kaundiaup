@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Citizen;
 use Illuminate\Http\Request;
 
 class HeirManagementController extends Controller
@@ -26,13 +27,17 @@ class HeirManagementController extends Controller
         return view('heir.generate');
     }
 
-    public function showEnCert()
+    public function showEnCert($id)
     {
-        return view('heir.show-en-certificate');
+
+        $data = Citizen::findOrFail($id);
+        return view('heir.show-en-certificate' , compact('data'));
     }
 
-    public function showBnCert()
+    public function showBnCert($id)
     {
-        return view('heir.show-bn-certificate');
+        dd($id);
+        $data = Citizen::findOrFail($id);
+        return view('heir.show-bn-certificate' , compact('data'));
     }
 }

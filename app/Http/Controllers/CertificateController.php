@@ -33,13 +33,15 @@ class CertificateController extends Controller
         return redirect()->route('certificate_recipients', $data->certificate_id);
     }
 
-    public function showBn()
+    public function showBn($id)
     {
-        return view('certificate.showBn');
+        $data = Citizen::findOrFail($id);
+        return view('certificate.showBn' , compact('data'));
     }
-    public function showEn()
+    public function showEn($id)
     {
-        return view('certificate.showEn');
+        $data = Citizen::findOrFail($id);
+        return view('certificate.showEn' , compact('data'));
     }
 
 

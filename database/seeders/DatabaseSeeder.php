@@ -17,10 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        // Certificate::factory(1)->create();
-        // Citizen::factory(5)->create();
-        // CertificateSubMenu::factory(5)->create();
         User::truncate();
         User::factory()->create([
             'name' => 'Administrator',

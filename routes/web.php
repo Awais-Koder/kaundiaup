@@ -7,12 +7,18 @@ use App\Http\Controllers\HeirManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TradeLicenseController;
 use App\Http\Controllers\BasicSettings;
+use App\Models\Citizen;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-//    return redirect()->route('login');
+    //    return redirect()->route('login');
     return view('welcome');
 });
+Route::get('preview/{id}', function ($id) {
+    $decryptedId = base64_decode($id);
+    $citizen = Citizen::findOrFail($decryptedId);
+    return view('view-certificate', compact('citizen'));
+})->name('certificate.view');
 
 Route::get('locale/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'bn'])) {
@@ -54,8 +60,8 @@ Route::middleware('auth')->prefix('heir-management')->name('heir.')->group(funct
     Route::get('/certificate-recipients', [HeirManagementController::class, 'certificateRecipients'])->name('certificate_recipients');
     Route::get('/expired-heir', [HeirManagementController::class, 'expiredHeir'])->name('expired_heir');
     Route::get('/generate', [HeirManagementController::class, 'generate'])->name('generate');
-    Route::get('/en-cert', [HeirManagementController::class, 'showEnCert'])->name('showEnCert');
-    Route::get('/bn-cert', [HeirManagementController::class, 'showBnCert'])->name('showBnCert');
+    Route::get('/en-cert/{id}', [HeirManagementController::class, 'showEnCert'])->name('showEnCert');
+    Route::get('/bn-cert/{id}', [HeirManagementController::class, 'showBnCert'])->name('showBnCert');
 });
 
 // Family Management
@@ -77,11 +83,13 @@ Route::middleware('auth')->prefix('certificate')->name('certificate.')->group(fu
     Route::post('/generate/{id}', [CertificateController::class, 'storeCertificate'])->name('generate.store');
     Route::get('/generateTrade', [CertificateController::class, 'generateTrade'])->name('generateTrade');
     Route::get('/TradeRenewal', [CertificateController::class, 'TradeRenewal'])->name('TradeRenewal');
-    Route::get('/showBn', [CertificateController::class, 'showBn'])->name('showBn');
-    Route::get('/showEn', [CertificateController::class, 'showEn'])->name('showEn');
+    Route::get('/showBn/{id}', [CertificateController::class, 'showBn'])->name('showBn');
+    Route::get('/showEn/{id}', [CertificateController::class, 'showEn'])->name('showEn');
+
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::resource('citizens', App\Http\Controllers\CitizenController::class);
