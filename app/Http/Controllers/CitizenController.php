@@ -33,24 +33,23 @@ class CitizenController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            'certificate_id' => ['required', 'integer', 'exists:certificates,id'],
-            'name_bn' => ['required'],
-            'name_en' => ['required'],
-            'father_name_en' => ['required'],
-            'father_name_bn' => ['required'],
-            'gender' => ['required'],
-            'permanent_holding_no' => ['required'],
-            'ward_no' => ['required'],
-            'moholla_id' => ['required'],
-            'permanent_district_id' => ['required'],
-            'permanent_upazila_id' => ['required'],
-            'permanent_postoffice_id' => ['required'],
-            'male' => ['required'],
-            'female' => ['required'],
-            'probable_rate' => ['required'],
-            'halson_percentage' => ['required'],
-        ]);
+//        $request->validate([
+//            'certificate_id' => ['required', 'integer', 'exists:certificates,id'],
+//            'name_bn' => ['required'],
+//            'name_en' => ['required'],
+//            'father_name_en' => ['required'],
+//            'father_name_bn' => ['required'],
+//            'gender' => ['required'],
+//            'permanent_holding_no' => ['required'],
+//            'ward_no' => ['required'],
+//            'permanent_district_id' => ['required'],
+//            'permanent_upazila_id' => ['required'],
+//            'permanent_postoffice_id' => ['required'],
+//            'male' => ['required'],
+//            'female' => ['required'],
+//            'probable_rate' => ['required'],
+//            'halson_percentage' => ['required'],
+//        ]);dd('its here');
         $data = $request->all();
         if (!empty($request->image)) {
             $data['image'] = $request->image->store('citizens', 'public');
@@ -58,6 +57,7 @@ class CitizenController extends Controller
         $data['tracking_number'] = $this->generateTrackingNumber();
         $citizen = Citizen::create($data);
         $encryptedId = base64_encode($citizen->id);
+
         return redirect()->route('certificate.view', $encryptedId);
     }
 
