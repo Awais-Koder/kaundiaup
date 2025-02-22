@@ -15,63 +15,58 @@ return new class extends Migration
 
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('certificate_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('certificate_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate(); //done
             $table->integer('tracking_number')->unique();
-            $table->string('name_bn')->nullable();
-            $table->string('name_en')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('image')->nullable();
-            $table->string('nid')->nullable();
-            $table->string('birth_id')->nullable();
-            $table->string('passport_no')->nullable();
-            $table->date('birth_date')->nullable();
-            $table->string('father_name_bn')->nullable();
-            $table->string('father_name_en')->nullable();
-            $table->string('mother_name_bn')->nullable();
-            $table->string('occupation')->nullable();
-            $table->string('resident')->nullable();
-            $table->string('educational_qualification')->nullable();
-            $table->string('religion')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('marital_status')->nullable();
-            $table->string('husband_name_en')->nullable();
-            $table->string('husband_name_bn')->nullable();
-            $table->string('wife_name_en')->nullable();
-            $table->string('wife_name_bn')->nullable();
-            $table->string('permanent_holding_no')->nullable();
-            $table->string('ward_no')->nullable();
-            $table->string('moholla_id')->nullable();
-            $table->string('permanent_rbs_bn')->nullable();
-            $table->string('permanent_district_id')->nullable();
-            $table->string('permanent_upazila_id')->nullable();
-            $table->string('permanent_postoffice_id')->nullable();
-            $table->integer('male')->nullable();
-            $table->integer('female')->nullable();
-            $table->integer('child')->nullable();
-            $table->integer('handicap')->nullable();
-            $table->integer('member_of_earning')->nullable();
-            $table->integer('number_of_dependents_family')->nullable();
-            $table->integer('ssc_job_holder')->nullable();
-            $table->integer('hsc_job_holder')->nullable();
-            $table->string('land_owner')->nullable();
-            $table->string('income_source')->nullable();
-            $table->string('yearly_income')->nullable();
-            $table->string('nolkup')->nullable();
-            $table->string('expanse_sector')->nullable();
-            $table->integer('remittance_senders')->nullable();
-            $table->string('sanitation')->nullable();
-            $table->string('electronics_instrument')->nullable();
-            $table->string('social_security')->nullable();
-            $table->string('security_program')->nullable();
-            $table->integer('multi_building_house')->nullable();
-            $table->integer('ripe_house')->nullable();
-            $table->integer('semi_ripe_house')->nullable();
-            $table->integer('tin_shed_house')->nullable();
-            $table->integer('raw_house')->nullable();
-            $table->integer('probable_rate')->nullable();
-            $table->float('halson_percentage')->nullable();
-            $table->float('halson_tax')->nullable();
-            $table->string('status')->default('new');
+            $table->string('name_bn')->nullable(); //done
+            $table->string('name_en')->nullable(); //done
+            $table->string('image')->nullable(); //done
+            $table->string('nid')->nullable(); // done
+            $table->string('birth_id')->nullable(); //done
+            $table->string('passport_no')->nullable(); //done
+            $table->date('birth_date')->nullable(); //done
+            $table->string('father_name_bn')->nullable();//done
+            $table->string('father_name_en')->nullable(); //done
+            $table->string('mother_name_bn')->nullable();//done
+            $table->string('mother_name_en')->nullable();//done
+            $table->string('occupation')->nullable();//done
+            $table->string('resident')->nullable(); //done
+            $table->string('educational_qualification')->nullable(); //done
+            $table->string('religion')->nullable(); //done
+            $table->string('gender')->nullable(); //done
+            $table->string('marital_status')->nullable(); //done
+            $table->string('husband_name_en')->nullable(); //done
+            $table->string('husband_name_bn')->nullable(); //done
+            $table->string('wife_name_en')->nullable(); //done
+            $table->string('wife_name_bn')->nullable(); //done
+            $table->string('permanent_holding_no')->nullable(); //done
+            $table->string('p_gram')->nullable(); //done
+            $table->string('pb_gram')->nullable(); //done
+            $table->string('p_rbs')->nullable(); //done
+            $table->string('pb_rbs')->nullable(); //done
+            $table->string('p_wordno')->nullable(); //done
+            $table->string('pb_wordno')->nullable(); //done
+            $table->string('p_dis')->nullable(); //done
+            $table->string('pb_dis')->nullable(); //done
+            $table->string('p_upozila')->nullable(); //done
+            $table->string('pb_upozila')->nullable(); //done
+            $table->string('p_postof')->nullable(); //done
+            $table->string('pb_postof')->nullable(); //done
+            $table->string('per_gram')->nullable(); //done
+            $table->string('perb_gram')->nullable(); //done
+            $table->string('per_rbs')->nullable(); //done
+            $table->string('perb_rbs')->nullable(); //done
+            $table->string('per_wordno')->nullable(); //done
+            $table->string('perb_wordno')->nullable(); //done
+            $table->string('per_dis')->nullable(); //done
+            $table->string('perb_dis')->nullable(); //done
+            $table->string('per_upozila')->nullable(); //done
+            $table->string('perb_upozila')->nullable(); //done
+            $table->string('per_postof')->nullable(); //done
+            $table->string('perb_postof')->nullable(); //done
+            $table->string('mobile')->nullable(); //done
+            $table->string('email')->nullable(); //done
+            $table->string('status')->default('new'); //done
+            $table->text('attachment')->nullable(); //done
             $table->timestamps();
         });
 

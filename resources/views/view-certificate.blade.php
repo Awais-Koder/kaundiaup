@@ -153,13 +153,13 @@
                                     <td colspan="3" style="border-left:none; border-bottom:none;">
                                         <p>
                                             &nbsp;:&nbsp; গ্রাম/মহল্লা
-                                            :{{ $citizen->moholla_id }},&nbsp;&nbsp;&nbsp;রোড/ব্লক/সেক্টর
-                                            :{{ $citizen->permanent_rbs_bn }} <br>
+                                            {{-- :{{ $citizen->moholla_id }},&nbsp;&nbsp;&nbsp;রোড/ব্লক/সেক্টর --}}
+                                            :{{ $citizen->per_rbs }} <br>
                                             &nbsp;&nbsp;&nbsp;&nbsp;পোষ্ট অফিস
-                                            :{{ $citizen->permanent_postoffice_id }},&nbsp;&nbsp;&nbsp;ওয়ার্ড নং :
-                                            {{ $citizen->ward_no }}<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;থানা : {{ $citizen->permanent_upazila_id }}<br>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;জেলা : {{ $citizen->permanent_district_id }}
+                                            :{{ $citizen->per_postof }},&nbsp;&nbsp;&nbsp;ওয়ার্ড নং :
+                                            {{ $citizen->per_wordno }}<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;থানা : {{ $citizen->per_upozila }}<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;জেলা : {{ $citizen->per_dis }}
                                         </p>
                                     </td>
                                 </tr>

@@ -397,7 +397,7 @@
                         <p style="opacity: 0" class="header">-</p>
                         <p style="opacity: 0" class="header">-</p>
                         <h4 style="color: #2C5F2D; margin-top:10px;" class="header">Ward No : &nbsp;
-                            <span>{{ $data->ward_no }}</span>
+                            <span>{{ $data->p_wordno }}</span>
                         </h4>
                     </div>
 
@@ -439,9 +439,9 @@
                     <div class="left">
                         <span class="location">
                             <h4 style="margin-bottom: 10px; color:#2D7D61; z-index:10;" class="header mb-1">
-                                Village/Area: {{ $data->moholla_id }}</h4>
+                                Village/Area: {{ $data->p_gram }}</h4>
                             <h4 style="margin-bottom: 10px; color:#2D7D61; z-index:10;" class="header">
-                                Road Name: {{ $data->permanent_rbs_bn }}</h4>
+                                Road Name: {{ $data->p_rbs }}</h4>
                         </span>
                         <div class="content">
                             <p class="title">Saiful Alam Khan</p>
